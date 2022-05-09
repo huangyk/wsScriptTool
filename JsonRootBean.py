@@ -9,3 +9,5 @@ class JsonRootBean:
         self.name = name
         self.desc= desc
         self.pathBean=pathBean
+    def json_serialize(self):
+        return {'pathBean': self.pathBean}

@@ -1,6 +1,10 @@
 import json
 import os
 import time
+import NpEncoder
+import Root
+
+import demjson
 
 
 from array import *
@@ -70,13 +74,16 @@ def main():
                     list.append(paBean)
             jsonBean=JsonRootBean(module,module,list)
             alldata.append(jsonBean)
-    # 生成文件
-    # 生成当前的时间戳和文件名
-    with open('11.json', 'w', encoding='utf8', errors='ignore') as json_file:
-        data=json.dumps(alldata)
+            # 生成文件
+            # 生成当前的时间戳和文件名
+            # rootdata=Root(alldata)
+            print(jsonBean.__dict__)
+    with open('11.json', 'w', encoding='utf8') as json_file:
+        #这里得不到一个合适的对象
+        data=json.dumps(jsonBean, default=lambda obj: obj.__dict__)
         json_file.write(data)
     fp.close()
 
  
 if __name__ == '__main__':
-    main()        
+    main()
