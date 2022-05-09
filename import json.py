@@ -41,49 +41,67 @@ def main():
                 # 每一行做匹配
                 # 做文本处理
                 if line.find('@WSRestController')!=-1:
-                    # print(line)s
-                    first_index=line.find('"/')
-                    end_index=line.find(',')
-                    # print(line[first_index+1:end_index-1])
-                    # 查找字符串
-                    module_first_index=line.find('module =')
-                    modeule_end_index=line.find('")')
-                    # print(line[module_first_index+10:modeule_end_index])
-                    module=line[module_first_index+10:modeule_end_index]
-                    path=line[first_index+1:end_index-1]
+                    # 当前这个集合的
+                    path = getPath(line, path)
+                    module = getModuleName(line, module)
+
                 if line.find('@OpRequest')!=-1:
-                    # print(line)
-                    first_index=line.find('@OpRequest')
-                    end_index=line.find('Mapping')
-                    # print(line[first_index+10:end_index])
-                    # 这个是基本的路径
-                    # print(path+'/'+line[first_index+10:end_index])  
-                    # @OpRequestUpdateMapping(op = "update", desc = "平台计费-预约计费规则-修改")  
-                    op_first_index=line.find('op = ')
-                    op_end_index=line.find(',')
-                    # 方法路径
-                    # print(path+'/'+line[first_index+10:end_index]+'?'+line[op_first_index:op_end_index])    
-                    # 说明是有这个函数的 
-                    moduleName=line.find('desc')
-                    # 描述
-                    # print(line[moduleName+6:-1])
-                # 在这里做一个对象
-                    # print(path+'/'+line[first_index+10:end_index]+'?'+line[op_first_index:op_end_index])
-                    # print(line[moduleName+8:-2])
-                    paBean=pathBean(line[moduleName+8:-2].strip,path+'/'+line[first_index+10:end_index]+'?'+line[op_first_index:op_end_index])
+                    # 获取当前接口op信息
+                    paBean = getOpInfo(line, path)
                     list.append(paBean)
+
             jsonBean=JsonRootBean(module,module,list)
             alldata.append(jsonBean)
             # 生成文件
             # 生成当前的时间戳和文件名
             # rootdata=Root(alldata)
             print(jsonBean.__dict__)
+            print(alldata.__dict__)
+            # fp.close()
     with open('11.json', 'w', encoding='utf8') as json_file:
-        #这里得不到一个合适的对象
-        data=json.dumps(jsonBean, default=lambda obj: obj.__dict__)
+        data=json.dumps(alldata, default=lambda obj: obj.__dict__)
         json_file.write(data)
-    fp.close()
 
- 
+ # 获取当前接口op信息
+def getOpInfo(line, path):
+    # print(line)
+    first_index = line.find('@OpRequest')
+    end_index = line.find('Mapping')
+    # print(line[first_index+10:end_index])
+    # 这个是基本的路径
+    # print(path+'/'+line[first_index+10:end_index])
+    # @OpRequestUpdateMapping(op = "update", desc = "平台计费-预约计费规则-修改")
+    op_first_index = line.find('op = ')
+    op_end_index = line.find(',')
+    # 方法路径
+    # print(path+'/'+line[first_index+10:end_index]+'?'+line[op_first_index:op_end_index])
+    # 说明是有这个函数的
+    moduleName = line.find('desc')
+    # 描述
+    # print(line[moduleName+6:-1])
+    # 在这里做一个对象
+    # print(path+'/'+line[first_index+10:end_index]+'?'+line[op_first_index:op_end_index])
+    # print(line[moduleName+8:-2])
+    paBean = pathBean(line[moduleName + 8:-2].strip,
+                      path + '/' + line[first_index + 10:end_index] + '?' + line[op_first_index:op_end_index])
+    return paBean
+
+
+# 获取path
+def getPath(line, path):
+    first_index = line.find('"/')
+    end_index = line.find(',')
+    path = line[first_index + 1:end_index - 1]
+    return path
+
+# 获取当前module
+def getModuleName(line, module):
+    module_first_index = line.find('module =')
+    modeule_end_index = line.find('")')
+    # print(line[module_first_index+10:modeule_end_index])
+    module = line[module_first_index + 10:modeule_end_index]
+    return module
+
+
 if __name__ == '__main__':
     main()
