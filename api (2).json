@@ -1,0 +1,114 @@
+[
+  {
+    "index": 0,
+    "name": "测试赛",
+    "desc": null,
+    "add_time": 1651828761,
+    "up_time": 1651828761,
+    "list": [
+      {
+        "query_path": {
+          "path": "/newtaxiappoint/charging/system/update",
+          "params": [
+            {
+              "_id": "6274ea876125056ac4ddd6aa",
+              "name": "op",
+              "value": "delete"
+            }
+          ]
+        },
+        "edit_uid": 0,
+        "status": "undone",
+        "type": "static",
+        "req_body_is_json_schema": true,
+        "res_body_is_json_schema": true,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 92609,
+        "method": "POST",
+        "catid": 18076,
+        "title": "测试",
+        "path": "/newtaxiappoint/charging/system/update?op=delete",
+        "project_id": 2245,
+        "req_params": [],
+        "res_body_type": "json",
+        "uid": 2695,
+        "add_time": 1651828774,
+        "up_time": 1651829383,
+        "req_query": [],
+        "req_headers": [
+          {
+            "required": "1",
+            "_id": "6274ea876125056ac4ddd6a9",
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "req_body_form": [],
+        "__v": 0,
+        "desc": "",
+        "markdown": "",
+        "req_body_type": "json",
+        "res_body": "{\"type\":\"object\",\"title\":\"empty object\",\"properties\":{}}",
+        "req_body_other": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"data\":{\"type\":\"string\"},\"op\":{\"type\":\"string\",\"description\":\"delete\"},\"token\":{\"type\":\"string\"}},\"required\":[\"data\",\"op\",\"token\"]}"
+      }
+    ]
+  },
+  {
+    "index": 0,
+    "name": "测试2",
+    "desc": null,
+    "add_time": 1651828894,
+    "up_time": 1651828894,
+    "list": [
+      {
+        "query_path": {
+          "path": "/newtaxiappoint/charging/system/update",
+          "params": [
+            {
+              "_id": "6274ea996125056ac4ddd6ac",
+              "name": "op",
+              "value": "delete2"
+            }
+          ]
+        },
+        "edit_uid": 0,
+        "status": "undone",
+        "type": "static",
+        "req_body_is_json_schema": true,
+        "res_body_is_json_schema": true,
+        "api_opened": false,
+        "index": 0,
+        "tag": [],
+        "_id": 92621,
+        "method": "POST",
+        "catid": 18081,
+        "title": "测试2接口",
+        "path": "/newtaxiappoint/charging/system/update?op=delete2",
+        "project_id": 2245,
+        "req_params": [],
+        "res_body_type": "json",
+        "uid": 2695,
+        "add_time": 1651828913,
+        "up_time": 1651829401,
+        "req_query": [],
+        "req_headers": [
+          {
+            "required": "1",
+            "_id": "6274ea996125056ac4ddd6ab",
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "req_body_form": [],
+        "__v": 0,
+        "desc": "",
+        "markdown": "",
+        "req_body_other": "{\"$schema\":\"http://json-schema.org/draft-04/schema#\",\"type\":\"object\",\"properties\":{\"data\":{\"type\":\"string\"},\"op\":{\"type\":\"string\",\"description\":\"delete2\"},\"token\":{\"type\":\"string\"}}}",
+        "req_body_type": "json",
+        "res_body": ""
+      }
+    ]
+  }
+]

@@ -1,0 +1,27 @@
+[
+  {
+    "index": 0,
+    "name": "测试赛",
+   
+    "list": [
+      {
+        "status": "undone",
+        "type": "static",
+        "index": 0,
+        "method": "POST",
+        "title": "测试",
+        "path": "/newtaxiappoint/charging/system/update?op=delete",
+        "res_body_type": "json",
+        "req_headers": [
+          {
+            "required": "1",
+            "_id": "6274ea876125056ac4ddd6a9",
+            "name": "Content-Type",
+            "value": "application/json"
+          }
+        ]
+      }
+    ]
+  }
+  
+]
