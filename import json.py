@@ -37,9 +37,6 @@ def main():
             list=[]
             for lines in content:
                 line=lines.strip()
-                # print(line, end="")
-                # 每一行做匹配
-                # 做文本处理
                 if line.find('@WSRestController')!=-1:
                     # 当前这个集合的
                     path = getPath(line, path)
@@ -52,15 +49,13 @@ def main():
 
             jsonBean=JsonRootBean(module,module,list)
             alldata.append(jsonBean)
-            # 生成文件
-            # 生成当前的时间戳和文件名
-            # rootdata=Root(alldata)
             print(jsonBean.__dict__)
             print(alldata.__dict__)
-            # fp.close()
+            fp.close()
     with open('11.json', 'w', encoding='utf8') as json_file:
-        data=json.dumps(alldata, default=lambda obj: obj.__dict__)
-        json_file.write(data)
+        print('111')
+        # data=json.dumps(alldata, default=lambda obj: obj.__dict__)
+        # json_file.write(data)
 
  # 获取当前接口op信息
 def getOpInfo(line, path):
