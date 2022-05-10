@@ -1,6 +1,6 @@
 import json
-import numpy
-import pathBean
+from yapiBean import list
+
 
 class NpEncoder(json.JSONEncoder):
     def default(self, obj):

@@ -1,15 +1,9 @@
 import json
 import os
-import time
-import NpEncoder
-import Root
+import datetime
 
-import demjson
-
-
-from array import *
-from JsonRootBean import JsonRootBean
-from pathBean import pathBean
+from yapiBean.JsonRootBean import JsonRootBean
+from yapiBean.list import list
 
 # from numpy import piecewise
 
@@ -36,7 +30,7 @@ def main():
             path=''
             list=[]
             for lines in content:
-                line=lines.strip()
+                line=lines
                 if line.find('@WSRestController')!=-1:
                     # 当前这个集合的
                     path = getPath(line, path)
@@ -45,18 +39,24 @@ def main():
                 if line.find('@OpRequest')!=-1:
                     # 获取当前接口op信息
                     paBean = getOpInfo(line, path)
-                    list.append(paBean)
+                    # print(paBean.__dict__)
+                    list.append(paBean.__dict__)
 
             jsonBean=JsonRootBean(module,module,list)
-            alldata.append(jsonBean)
-            print(jsonBean.__dict__)
-            print(alldata.__dict__)
+            alldata.append(jsonBean.__dict__)
+            # print(jsonBean.__dict__)
+            # print(jsonpickle.dumps(jsonBean))
+            # print(jsonpickle.encode(alldata))
             fp.close()
-    with open('11.json', 'w', encoding='utf8') as json_file:
-        print('111')
-        # data=json.dumps(alldata, default=lambda obj: obj.__dict__)
-        # json_file.write(data)
-
+    #  生成一个不重复的文件名
+    datatime=datetime.datetime.now().strftime('%Y-%m-%d-%H:%M:%S')
+    fileName='yapi.json'
+    # 新建一个文件
+    # 暂时不需要使用 with
+    json_file=open(fileName, 'w', encoding='utf8')
+    data=json.dumps(alldata, default=lambda obj: obj.__dict__,ensure_ascii=False,indent=4)
+    json_file.write(data)
+    json_file.close()
  # 获取当前接口op信息
 def getOpInfo(line, path):
     # print(line)
@@ -77,7 +77,7 @@ def getOpInfo(line, path):
     # 在这里做一个对象
     # print(path+'/'+line[first_index+10:end_index]+'?'+line[op_first_index:op_end_index])
     # print(line[moduleName+8:-2])
-    paBean = pathBean(line[moduleName + 8:-2].strip,
+    paBean = list(line[moduleName + 8:-3],
                       path + '/' + line[first_index + 10:end_index] + '?' + line[op_first_index:op_end_index])
     return paBean
 
