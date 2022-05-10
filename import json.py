@@ -5,7 +5,6 @@ import datetime
 from yapiBean.JsonRootBean import JsonRootBean
 from yapiBean.list import list
 
-# from numpy import piecewise
 
 def main():
     # 自己的代码的Controller层 可以放在一个目录下，写好路径即可
